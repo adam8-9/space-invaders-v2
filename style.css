@@ -4,6 +4,7 @@ body{
     align-items: center;
     justify-content: center;
     height:90vh;
+    font-family:monospace;
 }
 .grid{
     width: 300px;
@@ -32,4 +33,9 @@ body{
 
 .boom{
     background-color:red;
+}
+.instructions{
+    margin-top: 50px;
+    font-size: larger;
+    font-weight: bold;
 }

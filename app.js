@@ -94,6 +94,7 @@ function moveInvaders() {
         if (invader > squares.length) {
             resultsDisplay.innerHTML = 'GAME OVER'
             clearInterval(invadersId)
+            clearInterval(moveLaser)
         }
     })
     if (aliensRemoved.length === alienInvaders.length) {
@@ -105,6 +106,7 @@ function moveInvaders() {
 invadersId = setInterval(moveInvaders, 100)
 
 function shoot(e) {
+    console.log(e.key)
     let laserId
     let currentLaserIndex = currentShooterIndex
     function moveLaser() {
@@ -129,6 +131,10 @@ function shoot(e) {
     switch (e.key) {
         case 'ArrowUp':
             laserId = setInterval(moveLaser, 100)
+            break
+        case ' ':
+            laserId = setInterval(moveLaser, 100)
+            break
     }
 }
 
