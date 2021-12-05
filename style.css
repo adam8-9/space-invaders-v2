@@ -1,5 +1,6 @@
 body{
     display:flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height:90vh;
@@ -22,5 +23,13 @@ body{
     border-radius:50%;
 }
 .shooter{
-    background-color: red;
+    background-color: green;
+}
+
+.laser{
+    background-color:orange;
+}
+
+.boom{
+    background-color:red;
 }
