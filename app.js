@@ -19,17 +19,17 @@ const alienInvaders = [
 ]
 
 function draw() {
-    alienInvaders.forEach((x, index) => {
-        squares[x].classList.add('invader')
-    })
+    for (let i = 0; i < alienInvaders.length; i++) {
+        squares[alienInvaders[i]].classList.add('invader')
+    }
 }
 
 draw()
 
 function remove() {
-    alienInvaders.forEach((x, index) => {
-        squares[x].classList.remove('invader')
-    })
+    for (let i = 0; i < alienInvaders.length; i++) {
+        squares[alienInvaders[i]].classList.remove('invader')
+    }
 }
 
 squares[currentShooterIndex].classList.add('shooter')
@@ -56,23 +56,27 @@ function moveInvaders() {
     remove()
 
     if (rightEdge && goingRight) {
-        alienInvaders.forEach((x) => {
-            x += width + 1
+
+        for (let i = 0; i < alienInvaders.length; i++) {
+            alienInvaders[i] += width + 1
             direction = -1
             goingRight = false
-        })
+        }
+
     }
 
-    if (leftEdge && !goingLeft) {
-        alienInvaders.forEach((x) => {
-            x += width - 1
+    if (leftEdge && !goingRight) {
+        for (let i = 0; i < alienInvaders.length; i++) {
+            alienInvaders[i] += width - 1
             direction = 1
             goingRight = true
-        })
+        }
     }
 
 
-    alienInvaders.forEach(x => x += direction)
+    for (let i = 0; i < alienInvaders.length; i++) {
+        alienInvaders[i] += direction
+    }
 
     draw()
 }
