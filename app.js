@@ -7,6 +7,7 @@ let invadersId
 let goingRight = true
 let aliensRemoved = []
 let results = 0
+let check = true
 
 for (let i = 0; i < 225; i++) {
     let square = document.createElement('div')
@@ -87,19 +88,26 @@ function moveInvaders() {
 
     if (squares[currentShooterIndex].classList.contains('invader', 'shooter')) {
         resultsDisplay.innerHTML = 'GAME OVER'
+        check = false
         clearInterval(invadersId)
+        clearInterval(alienBullet)
+        clearInterval(moveLaser)
     }
 
     alienInvaders.forEach((invader, index) => {
         if (invader > squares.length) {
             resultsDisplay.innerHTML = 'GAME OVER'
+            check = false
             clearInterval(invadersId)
             clearInterval(moveLaser)
+            clearInterval(alienBullet)
         }
     })
     if (aliensRemoved.length === alienInvaders.length) {
         resultsDisplay.innerHTML = 'YOU WIN'
+        check = false
         clearInterval(invadersId)
+        clearInterval(moveLaser)
     }
 }
 
@@ -127,6 +135,8 @@ function shoot(e) {
             results++
             resultsDisplay.innerHTML = results
         }
+
+
     }
     switch (e.key) {
         case 'ArrowUp':
@@ -138,5 +148,45 @@ function shoot(e) {
     }
 }
 
+let alienBullet
+function alienShoot() {
+    let currentAlienLaser = 30
+    function enemyLaser() {
+
+        if (alienInvaders.length >= 20 && currentAlienLaser > 225) {
+            // let alienLaser1 = Math.floor(Math.random() * (39 - 30 + 1) + 30)
+            let alienLaser1 = 30
+
+            currentAlienLaser += alienInvaders.indexOf(alienLaser1)
+            //  console.log(alienLaser1, currentAlienLaser, squares[alienLaser1])
+        }
+
+
+        if (currentAlienLaser < 225) {
+            squares[currentAlienLaser].classList.remove('laser')
+            currentAlienLaser += width
+            // console.log(currentAlienLaser)
+            squares[currentAlienLaser].classList.add('laser')
+        }
+
+        // check if alienInvaders.length is bigger than 20
+        //then  choose 3(for now just 1) random indexes from the last 10 indexes and add laser class 
+        //
+        //  console.log(check)
+    }
+
+    switch (check) {
+        case true:
+            alienBullet = setInterval(enemyLaser, 100)
+            break
+        case false:
+            alienBullet = clearInterval(enemyLaser)
+            break
+    }
+}
+alienBullet = setInterval(alienShoot(check), 100)
+
+
 
 document.addEventListener('keydown', shoot)
+
