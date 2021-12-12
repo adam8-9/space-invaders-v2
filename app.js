@@ -103,7 +103,7 @@ function moveInvaders() {
     }
 }
 
-invadersId = setInterval(moveInvaders, 100)
+invadersId = setInterval(moveInvaders, 1000)
 
 function shoot(e) {
     console.log(e.key)
