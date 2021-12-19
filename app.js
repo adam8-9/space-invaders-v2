@@ -127,7 +127,9 @@ function moveInvaders() {
     }
 }
 
-invadersId = setInterval(moveInvaders, 3000)
+
+invadersId = setInterval(moveInvaders, 1000)
+
 
 function shoot(e) {
     //  console.log(e.key)
@@ -244,6 +246,7 @@ function alienShoot() {
 
 alienBulletId = setInterval(alienShoot(), 100)
 if (check === false) { clearInterval(alienBulletId) }
+
 
 
 
