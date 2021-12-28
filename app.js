@@ -381,3 +381,4 @@ function alienShoot() {
 alienBulletId = setInterval(alienShoot(), 100)
 if (resultsDisplay.innerHTML == 'GAME OVER') { clearInterval(alienBulletId) }
 
+
