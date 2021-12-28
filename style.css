@@ -31,11 +31,28 @@ body{
     background-color:orange;
 }
 
-.boom{
+.alienLaser{
     background-color:red;
+}
+
+.boom{
+    background-color:rgb(255, 94, 0);
 }
 .instructions{
     margin-top: 50px;
     font-size: larger;
     font-weight: bold;
+}
+
+#levels{
+    display: flex;
+    margin: 40px 0;
+}
+
+#levels button{
+    /* margin: 0 10px;
+    background: orange;
+    border: 5px solid blue;
+    box-shadow: 5px 5px 5px blue; */
+    margin:0 10px;
 }
