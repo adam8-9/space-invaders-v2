@@ -27,7 +27,7 @@ https://user-images.githubusercontent.com/31065348/145426195-3aa9f1fb-9b72-4694-
 - [x] Display 'You win' when all enemy planes are destroyed 
 
 ## Additional features:
-- [ ] Create functionality to make enemy planes shoot at player plane 
+- [x] Create functionality to make enemy planes shoot at player plane 
 - [ ] Create option to increase difficulty 
 - [ ] Enable player to choose different shapes and colours for player plane/enemy plane
 
