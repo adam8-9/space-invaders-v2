@@ -161,6 +161,8 @@ function shoot(e) {
                 squares[currentLaserIndex].classList.remove('invader')
                 squares[currentLaserIndex].classList.add('boom')
 
+                let destroyedSound = new Audio('destroyed.wav')
+                destroyedSound.play()
                 setTimeout(() => squares[currentLaserIndex].classList.remove('boom'), 300);
                 clearInterval(laserId)
 
@@ -179,10 +181,11 @@ function shoot(e) {
         moveShooter = null
     }
 
-
+    let playerLaser = new Audio('playerLaser.wav')
     switch (e.key) {
         case 'ArrowUp':
             laserId = setInterval(moveLaser, 100)
+            playerLaser.play()
             break
         case ' ':
             laserId = setInterval(moveLaser, 100)
@@ -195,7 +198,7 @@ document.addEventListener('keydown', shoot)
 
 let alienBulletId
 //this makes the aliens shoot at the player 
-function alienShoot() {
+let alienShoot = () => {
     //let laser1Positions = [alienInvaders[20], alienInvaders[10], alienInvaders[0]]
     let laser1 = alienInvaders[20]
     let laser2 = alienInvaders[10]
@@ -219,14 +222,28 @@ function alienShoot() {
         // }
         // let iterator1 = laser1Positions[Symbol.iterator]()
         // let iterator2 = currentLaser1Indexes[Symbol.iterator]()
+
         try {
+            let count = 0
+            let AlienSound = new Audio('alienLaser.wav')
+            AlienSound.playbackRate = 1
+            AlienSound.volume = 0.5
             if (!aliensRemoved.includes(20)) {
                 if (laser1 < 225) {
                     squares[laser1].classList.remove('alienLaser')
                     laser1 += width
                     squares[laser1].classList.add('alienLaser')
+                    count++
+                    console.log(count)
+                    if (count == 1) {
+                        AlienSound.play()
+                        count = 2
+                    } else {
+                        AlienSound.pause()
+                    }
                 } else {
                     laser1 = alienInvaders[20]
+                    count = 0
                 }
             }
 
@@ -363,22 +380,13 @@ function alienShoot() {
         }
 
     }
-
-
-
-
-
-
     setInterval(enemyLaser1, 100)
     setInterval(enemyLaser2, 100)
     setInterval(enemyLaser3, 100)
     //else clearInterval(enemyLaser)
-
-
-
 }
 
 alienBulletId = setInterval(alienShoot(), 100)
-if (resultsDisplay.innerHTML == 'GAME OVER') { clearInterval(alienBulletId) }
+if (shooterExists == false) { alienShoot = null }
 
 
