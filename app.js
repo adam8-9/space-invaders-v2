@@ -139,13 +139,38 @@ if (shooterExists == false) {
     clearInterval(alienBulletId)
 }
 
-// level1.addEventListener('click', () => { window.location.reload(); moveSpeed = 1000; })
-// level2.addEventListener('click', () => { window.location.reload(); moveSpeed = 500; })
-// level3.addEventListener('click', () => { moveSpeed = 250; window.location.reload() })
 
-invadersId = setInterval(moveInvaders, moveSpeed)
+invadersId = setInterval(moveInvaders, 1000)
 
-// this allows the plyaer to shoot lasers
+
+
+level1.addEventListener('click', () => { sessionStorage.setItem('level1', true); window.location.reload(); })
+level2.addEventListener('click', () => { sessionStorage.setItem('level2', true); window.location.reload(); })
+level3.addEventListener('click', () => { sessionStorage.setItem('level3', true); window.location.reload(); })
+
+
+window.onload = function () {
+    let newSpeed2 = sessionStorage.getItem('level2')
+    let newSpeed3 = sessionStorage.getItem('level3')
+    // sessionStorage.removeItem('level1')
+
+
+    if (newSpeed2) {
+        invadersId = setInterval(moveInvaders, 500)
+        sessionStorage.removeItem('level2')
+
+    }
+    if (newSpeed3) {
+        invadersId = setInterval(moveInvaders, 250)
+        sessionStorage.removeItem('level3')
+
+    }
+
+}
+
+
+
+// this allows the player to shoot lasers
 function shoot(e) {
     let laserId
     let currentLaserIndex = currentShooterIndex
@@ -234,16 +259,16 @@ let alienShoot = () => {
                     laser1 += width
                     squares[laser1].classList.add('alienLaser')
                     count++
-                    console.log(count)
-                    if (count == 1) {
-                        AlienSound.play()
-                        count = 2
-                    } else {
-                        AlienSound.pause()
-                    }
+                    //  console.log(count)
+                    // if (count == 1) {
+                    //     AlienSound.play()
+                    //     count = 2
+                    // } else {
+                    //     AlienSound.pause()
+                    // }
                 } else {
                     laser1 = alienInvaders[20]
-                    count = 0
+                    // count = 0
                 }
             }
 
